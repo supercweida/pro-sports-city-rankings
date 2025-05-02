@@ -3,3 +3,4 @@ matplotlib
 numpy
 pandas
 pyfiglet
+plotly.express
