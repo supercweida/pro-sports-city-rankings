@@ -1,0 +1,81 @@
+City	Region
+Buffalo	Buffalo
+New England	Boston
+Miami	Miami
+Baltimore	Baltimore
+New York	New York
+Cleveland	Cleveland
+Houston	Houston
+Pittsburgh	Pittsburgh
+Cincinnati	Cincinnati
+San Diego	San Diego
+Oakland	Oakland/San Francisco
+Kansas City	Kansas City
+Denver	Denver
+Seattle	Seattle
+Philadelphia	Philadelphia
+Dallas	Dallas
+Washington	Washington DC
+St. Louis	St. Louis
+Minnesota	Minneapolis
+Detroit	Detroit
+Chicago	Chicago
+Tampa Bay	Tampa
+Green Bay	Green Bay
+Atlanta	Atlanta
+Los Angeles	Los Angeles
+San Francisco	Oakland/San Francisco
+New Orleans	New Orleans
+Indianapolis	Indianapolis
+Phoenix	Phoenix
+Arizona	Phoenix
+Jacksonville	Jacksonville
+Carolina	Charlotte
+Tennessee	Nashville
+Las Vegas	Las Vegas
+Milwaukee	Milwaukee
+Boston	Boston
+Toronto	Toronto
+Texas	Dallas
+California	Los Angeles
+Montreal	Montreal
+Florida	Miami/Fort Lauderdale
+Colorado	Denver
+Anaheim	Los Angeles
+New Jersey	Newark
+San Antonio	San Antonio
+Indiana	Indianapolis
+Utah	Salt Lake City
+Portland	Portland
+Golden State	Oakland/San Francisco
+Sacramento	Sacramento
+Charlotte	Charlotte
+Orlando	Orlando
+Vancouver	Vancouver
+Memphis	Memphis
+Oklahoma City	Oklahoma City
+Brooklyn	New York
+Edmonton	Edmonton
+Winnipeg	Winnipeg
+Quebec	Quebec City
+Hartford	Hartford
+Calgary	Calgary
+San Jose	San Jose
+Ottawa	Ottawa
+Nashville	Nashville
+Columbus	Columbus
+Vegas	Las Vegas
+TB	Tampa
+D.C.	Washington DC
+MetroStars	New York
+NE	Boston
+LA	Los Angeles
+KC	Kansas City
+SJ	San Jose
+NY	New York
+Salt Lake	Salt Lake City
+Chivas	Los Angeles
+NYCFC	New York
+LAFC	Los Angeles
+Montréal	Montreal
+Austin	Austin

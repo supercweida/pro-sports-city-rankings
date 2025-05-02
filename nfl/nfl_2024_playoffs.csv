@@ -1,0 +1,14 @@
+Week,Day,Date,Winner/tie,Filler Column 1,Loser/tie,Filler Column 2,Pts,Pts,year
+WildCard,Sat,2025-01-11,Houston Texans,,Los Angeles Chargers,boxscore,32,12,2024
+WildCard,Sat,2025-01-11,Baltimore Ravens,,Pittsburgh Steelers,boxscore,28,14,2024
+WildCard,Sun,2025-01-12,Buffalo Bills,,Denver Broncos,boxscore,31,7,2024
+WildCard,Sun,2025-01-12,Philadelphia Eagles,,Green Bay Packers,boxscore,22,10,2024
+WildCard,Sun,2025-01-12,Washington Commanders,@,Tampa Bay Buccaneers,boxscore,23,20,2024
+WildCard,Mon,2025-01-13,Los Angeles Rams,,Minnesota Vikings,boxscore,27,9,2024
+Division,Sat,2025-01-18,Kansas City Chiefs,,Houston Texans,boxscore,23,14,2024
+Division,Sat,2025-01-18,Washington Commanders,@,Detroit Lions,boxscore,45,31,2024
+Division,Sun,2025-01-19,Buffalo Bills,,Baltimore Ravens,boxscore,27,25,2024
+Division,Sun,2025-01-19,Philadelphia Eagles,,Los Angeles Rams,boxscore,28,22,2024
+ConfChamp,Sun,2025-01-26,Kansas City Chiefs,,Buffalo Bills,boxscore,32,29,2024
+ConfChamp,Sun,2025-01-26,Philadelphia Eagles,,Washington Commanders,boxscore,55,23,2024
+SuperBowl,Sun,2025-02-09,Philadelphia Eagles,,Kansas City Chiefs,boxscore,40,22,2024
