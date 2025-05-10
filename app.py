@@ -5,10 +5,12 @@ import streamlit as st
 # Title
 st.title("Major Sports League Rankings")
 
+league_list = ["NFL", "MLB", "NBA", "NHL", "MLS"]
+
 # Sidebar dropdown to select plot
 plot_choice = st.selectbox(
     "Choose a League:",
-    ["NFL", "MLB", "NBA", "NHL", "MLS"]
+    league_list
 )
 
 league_df = pd.read_csv(f'league_rankings/{plot_choice.lower()}_rankings.csv')
@@ -19,51 +21,130 @@ sort_column = st.selectbox(
     options=league_df.columns
 )
 
-# Sort the DataFrame based on the selected column
-league_df_sorted = league_df.sort_values(by=sort_column, ascending=False)
+# # Button
+# if st.button("Show All Leagues"):
+#     st.success(f"Showing All Leagues!")
 
-fig, ax = plt.subplots()
-ax.axis('off')
+# # Sort the DataFrame based on the selected column
+# league_df_sorted = league_df.sort_values(by=sort_column, ascending=False)
 
-table = ax.table(cellText=league_df_sorted.values, colLabels=league_df_sorted.columns, loc='center')
+# fig, ax = plt.subplots()
+# ax.axis('off')
 
-if plot_choice == 'NFL':
-    header_color = '#2C3E50'      # Deep navy blue
-    cell_color = '#ECF6FD'        # Very light blue
-    header_text_color = 'white'
-elif plot_choice == 'MLB':
-    header_color = '#3A6B35'      # Forest green
-    cell_color = '#E9F7EF'        # Mint cream
-    header_text_color = 'white'
-elif plot_choice == 'NBA':
-    header_color = '#7D5A50'      # Cocoa brown
-    cell_color = '#F5F0EB'        # Off-white with warmth
-    header_text_color = 'white'
-elif plot_choice == 'NHL':
-    header_color = '#C0392B'      # Strong red
-    cell_color = '#FDEDEC'        # Blush pink
-    header_text_color = 'white'
-elif plot_choice == 'MLS':
-    header_color = '#2C3E50'      # Dark gray-blue
-    cell_color = '#F2F4F4'        # Soft gray
-    header_text_color = 'white'
+# table = ax.table(cellText=league_df_sorted.values, colLabels=league_df_sorted.columns, loc='center')
+
+# if plot_choice == 'NFL':
+#     header_color = '#2C3E50'      # Deep navy blue
+#     cell_color = '#ECF6FD'        # Very light blue
+#     header_text_color = 'white'
+# elif plot_choice == 'MLB':
+#     header_color = '#3A6B35'      # Forest green
+#     cell_color = '#E9F7EF'        # Mint cream
+#     header_text_color = 'white'
+# elif plot_choice == 'NBA':
+#     header_color = '#7D5A50'      # Cocoa brown
+#     cell_color = '#F5F0EB'        # Off-white with warmth
+#     header_text_color = 'white'
+# elif plot_choice == 'NHL':
+#     header_color = '#C0392B'      # Strong red
+#     cell_color = '#FDEDEC'        # Blush pink
+#     header_text_color = 'white'
+# elif plot_choice == 'MLS':
+#     header_color = '#2C3E50'      # Dark gray-blue
+#     cell_color = '#F2F4F4'        # Soft gray
+#     header_text_color = 'white'
+# else:
+#     header_color = '#2C3E50'      # Deep navy blue
+#     cell_color = '#ECF6FD'        # Very light blue
+#     header_text_color = 'white'
+
+# # Apply colors
+# for (row, col), cell in table.get_celld().items():
+#     if row == 0:  # Header row
+#         cell.set_facecolor(header_color)
+#         cell.get_text().set_color(header_text_color)
+#         cell.set_text_props(weight='bold')  # Optional: bold header text
+#     else:
+#         cell.set_facecolor(cell_color)
+
+# st.subheader(f'{plot_choice}')
+# st.pyplot(fig)
+
+
+# Button logic to show all leagues
+if st.button("Show All Leagues"):
+    # Load all league dataframes
+    all_dfs = []
+    for league in league_list:
+        df = pd.read_csv(f'league_rankings/{league.lower()}_rankings.csv')
+        df["League"] = league  # Add league name as a column
+        all_dfs.append(df)
+    league_df = pd.concat(all_dfs, ignore_index=True)
+    
+    # REGION FILTER
+    if "Region" in league_df.columns:
+        unique_regions = league_df["Region"].dropna().unique().tolist()
+        selected_regions = st.multiselect("Filter by Region(s):", unique_regions, default=unique_regions)
+
+        # Apply region filter
+        league_df = league_df[league_df["Region"].isin(selected_regions)]
+
+    # Let user pick sort column from combined data
+    sort_column = st.selectbox("Sort the combined table by:", options=league_df.columns)
+
+    # Sort and display
+    league_df_sorted = league_df.sort_values(by=sort_column, ascending=False)
+
+    st.subheader("All Leagues Combined")
+    st.dataframe(league_df_sorted)
+
 else:
-    header_color = '#2C3E50'      # Deep navy blue
-    cell_color = '#ECF6FD'        # Very light blue
-    header_text_color = 'white'
+    # Load single selected league
+    league_df = pd.read_csv(f'league_rankings/{plot_choice.lower()}_rankings.csv')
 
-# Apply colors
-for (row, col), cell in table.get_celld().items():
-    if row == 0:  # Header row
-        cell.set_facecolor(header_color)
-        cell.get_text().set_color(header_text_color)
-        cell.set_text_props(weight='bold')  # Optional: bold header text
+    # Sort the DataFrame based on the selected column
+    league_df_sorted = league_df.sort_values(by=sort_column, ascending=False)
+
+    # Plotting logic (unchanged)
+    fig, ax = plt.subplots()
+    ax.axis('off')
+
+    table = ax.table(cellText=league_df_sorted.values, colLabels=league_df_sorted.columns, loc='center')
+
+    # Color logic (unchanged)
+    if plot_choice == 'NFL':
+        header_color = '#2C3E50'
+        cell_color = '#ECF6FD'
+        header_text_color = 'white'
+    elif plot_choice == 'MLB':
+        header_color = '#3A6B35'
+        cell_color = '#E9F7EF'
+        header_text_color = 'white'
+    elif plot_choice == 'NBA':
+        header_color = '#7D5A50'
+        cell_color = '#F5F0EB'
+        header_text_color = 'white'
+    elif plot_choice == 'NHL':
+        header_color = '#C0392B'
+        cell_color = '#FDEDEC'
+        header_text_color = 'white'
+    elif plot_choice == 'MLS':
+        header_color = '#2C3E50'
+        cell_color = '#F2F4F4'
+        header_text_color = 'white'
     else:
-        cell.set_facecolor(cell_color)
+        header_color = '#2C3E50'
+        cell_color = '#ECF6FD'
+        header_text_color = 'white'
 
-st.subheader(f'{plot_choice}')
-st.pyplot(fig)
+    for (row, col), cell in table.get_celld().items():
+        if row == 0:
+            cell.set_facecolor(header_color)
+            cell.get_text().set_color(header_text_color)
+            cell.set_text_props(weight='bold')
+        else:
+            cell.set_facecolor(cell_color)
 
-
-
+    st.subheader(f'{plot_choice}')
+    st.pyplot(fig)
 
