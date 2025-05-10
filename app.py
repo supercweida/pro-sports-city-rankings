@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 
-# Sample title
+# Title
 st.title("Major Sports League Rankings")
 
 # Sidebar dropdown to select plot
@@ -13,16 +13,44 @@ plot_choice = st.selectbox(
 
 league_df = pd.read_csv(f'league_rankings/{plot_choice.lower()}_rankings.csv')
 
+# Add sorting functionality
+sort_column = st.selectbox(
+    "Sort the table by:",
+    options=league_df.columns
+)
+
+# Sort the DataFrame based on the selected column
+league_df_sorted = league_df.sort_values(by=sort_column, ascending=False)
+
 fig, ax = plt.subplots()
 ax.axis('off')
 
-table = ax.table(cellText=league_df.values, colLabels=league_df.columns, loc='center')
+table = ax.table(cellText=league_df_sorted.values, colLabels=league_df_sorted.columns, loc='center')
 
-# Choose color
-
-header_color = '#2C3E50'      # Deep navy blue
-cell_color = '#ECF6FD'        # Very light blue
-header_text_color = 'white'
+if plot_choice == 'NFL':
+    header_color = '#2C3E50'      # Deep navy blue
+    cell_color = '#ECF6FD'        # Very light blue
+    header_text_color = 'white'
+elif plot_choice == 'MLB':
+    header_color = '#3A6B35'      # Forest green
+    cell_color = '#E9F7EF'        # Mint cream
+    header_text_color = 'white'
+elif plot_choice == 'NBA':
+    header_color = '#7D5A50'      # Cocoa brown
+    cell_color = '#F5F0EB'        # Off-white with warmth
+    header_text_color = 'white'
+elif plot_choice == 'NHL':
+    header_color = '#C0392B'      # Strong red
+    cell_color = '#FDEDEC'        # Blush pink
+    header_text_color = 'white'
+elif plot_choice == 'MLS':
+    header_color = '#2C3E50'      # Dark gray-blue
+    cell_color = '#F2F4F4'        # Soft gray
+    header_text_color = 'white'
+else:
+    header_color = '#2C3E50'      # Deep navy blue
+    cell_color = '#ECF6FD'        # Very light blue
+    header_text_color = 'white'
 
 # Apply colors
 for (row, col), cell in table.get_celld().items():
@@ -35,24 +63,6 @@ for (row, col), cell in table.get_celld().items():
 
 st.subheader(f'{plot_choice}')
 st.pyplot(fig)
-
-
-# header_color = '#3A6B35'      # Forest green
-# cell_color = '#E9F7EF'        # Mint cream
-# header_text_color = 'white'
-
-# header_color = '#7D5A50'      # Cocoa brown
-# cell_color = '#F5F0EB'        # Off-white with warmth
-# header_text_color = 'white'
-
-# header_color = '#C0392B'      # Strong red
-# cell_color = '#FDEDEC'        # Blush pink
-# header_text_color = 'white'
-
-# header_color = '#2C3E50'      # Dark gray-blue
-# cell_color = '#F2F4F4'        # Soft gray
-# header_text_color = 'white'
-
 
 
 
