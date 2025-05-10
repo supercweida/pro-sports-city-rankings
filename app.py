@@ -35,7 +35,16 @@ with col2:
 
 if text_button:
     # Display the text box when the button is clicked
-    st.write(f'Test blurb')
+    st.write('For each Region\'s season in a given year, a score is calculated.')
+    st.write('Formula For Season Score: Winning Percentage + Made Playoffs Bonus + Multiplier * (Playoff Distance Bonus/Max Playoff Points)')
+    st.write('Made Playoffs Bonus = 2')
+    st.write('Multiplier = 12')
+    st.write('Championship Winner Bonus / Max Playoff Points = 1')
+    st.write('Championship Loser Bonus / Max Playoff Points = 0.5')
+    st.write('Semi-finals Loser Bonus / Max Playoff Points = 0.25')
+    st.write('Quarter-finals Loser Bonus / Max Playoff Points = 0.125')
+    st.write('First Round Loser Bonus / Max Playoff Points = 0.0625')
+    
 
 if league_button:
     st.session_state.show_all = True
