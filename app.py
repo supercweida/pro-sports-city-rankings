@@ -62,7 +62,7 @@ if st.session_state.show_all:
     
     if st.button("Back to Single League View"):
         st.session_state.show_all = False
-        st.experimental_rerun()
+        #st.experimental_rerun()
         
 else:
     # Load single selected league
