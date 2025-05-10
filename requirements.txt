@@ -4,4 +4,3 @@ numpy
 pandas
 pyfiglet
 plotly.express
-plotly.graph_objects
