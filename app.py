@@ -4,6 +4,9 @@ import streamlit as st
 
 if 'show_all' not in st.session_state:
     st.session_state.show_all = False
+    
+if "show_textbox" not in st.session_state:
+    st.session_state.show_textbox = False
 
 # Title
 st.title("Major Sports League Rankings")
@@ -31,7 +34,8 @@ with col1:
     league_button = st.button("Show All Leagues")
     
 with col2:
-    text_button = st.button('Show Formula Used')
+    if text_button = st.button('Show Formula Used'):
+        st.session_state.show_textbox = not st.session_state.show_textbox
 
 if text_button:
     # Display the text box when the button is clicked
