@@ -24,7 +24,21 @@ sort_column = st.selectbox(
     options=league_df.columns
 )
 
-if st.button("Show All Leagues"):
+# Create two columns
+col1, col2 = st.columns(2)
+
+with col1:
+    text_button = st.button('Show Text Box')
+    
+with col2:
+    league_button = st.button("Show All Leagues")
+
+if text_button:
+    # Display the text box when the button is clicked
+    text_input = st.text_input('Enter some text:')
+    st.write(f'You entered: {text_input}')
+
+if league_button:
     st.session_state.show_all = True
 
 # Button logic to show all leagues
