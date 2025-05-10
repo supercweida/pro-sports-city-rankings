@@ -28,15 +28,14 @@ sort_column = st.selectbox(
 col1, col2 = st.columns(2)
 
 with col1:
-    text_button = st.button('Show Text Box')
+    league_button = st.button("Show All Leagues")
     
 with col2:
-    league_button = st.button("Show All Leagues")
+    text_button = st.button('Show Formula Used')
 
 if text_button:
     # Display the text box when the button is clicked
-    text_input = st.text_input('Enter some text:')
-    st.write(f'You entered: {text_input}')
+    st.write(f'Test blurb')
 
 if league_button:
     st.session_state.show_all = True
