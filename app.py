@@ -4,9 +4,6 @@ import streamlit as st
 
 if 'show_all' not in st.session_state:
     st.session_state.show_all = False
-    
-if "show_textbox" not in st.session_state:
-    st.session_state.show_textbox = False
 
 # Title
 st.title("Major Sports League Rankings")
@@ -35,7 +32,6 @@ with col1:
     
 with col2:
     text_button = st.button('Show Formula Used')
-    st.session_state.show_textbox = not st.session_state.show_textbox
 
 if text_button:
     # Display the text box when the button is clicked
@@ -139,4 +135,11 @@ else:
 
     st.subheader(f'{plot_choice}')
     st.pyplot(fig)
-
+    
+    
+st.write('Sources:')
+st.write('NFL Sports Reference: https://www.pro-football-reference.com')
+st.write('MLB Sports Reference: https://www.baseball-reference.com')
+st.write('NBA Sports Reference: https://www.basketball-reference.com')
+st.write('NHL Sports Reference: https://www.hockey-reference.com')
+st.write('MLS Sports Reference: https://fbref.com')
