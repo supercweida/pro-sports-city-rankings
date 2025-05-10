@@ -34,8 +34,8 @@ with col1:
     league_button = st.button("Show All Leagues")
     
 with col2:
-    if text_button = st.button('Show Formula Used'):
-        st.session_state.show_textbox = not st.session_state.show_textbox
+    text_button = st.button('Show Formula Used')
+    st.session_state.show_textbox = not st.session_state.show_textbox
 
 if text_button:
     # Display the text box when the button is clicked
