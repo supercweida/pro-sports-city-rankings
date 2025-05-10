@@ -11,12 +11,12 @@ plot_choice = st.selectbox(
     ["NFL", "MLB", "NBA", "NHL", "MLS"]
 )
 
-league = pd.read_csv(f'league_rankings/{plot_choice.lower()}_rankings.csv')
+league_df = pd.read_csv(f'league_rankings/{plot_choice.lower()}_rankings.csv')
 
 fig, ax = plt.subplots()
 ax.axis('off')
 
-table = ax.table(cellText=nfl.values, colLabels=nfl.columns, loc='center')
+table = ax.table(cellText=league_df.values, colLabels=league_df.columns, loc='center')
 
 # Choose color
 
