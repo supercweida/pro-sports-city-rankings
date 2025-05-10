@@ -81,13 +81,22 @@ if st.button("Show All Leagues"):
         all_dfs.append(df)
     league_df = pd.concat(all_dfs, ignore_index=True)
     
-    # REGION FILTER
-    if "Region" in league_df.columns:
-        unique_regions = league_df["Region"].dropna().unique().tolist()
-        selected_regions = st.multiselect("Filter by Region(s):", unique_regions, default=unique_regions)
+    # Get all unique regions
+    unique_regions = sorted(league_df["Region"].dropna().unique())
 
-        # Apply region filter
+    # Region filter using checkboxes
+    st.markdown("### Filter by Region(s):")
+    selected_regions = []
+    for region in unique_regions:
+        if st.checkbox(region, value=True):  # Checked by default
+            selected_regions.append(region)
+
+    # Apply the filter
+    if selected_regions:
         league_df = league_df[league_df["Region"].isin(selected_regions)]
+    else:
+        st.warning("No regions selected. Showing no data.")
+        league_df = league_df.iloc[0:0]  # Show empty dataframe
 
     # Let user pick sort column from combined data
     sort_column = st.selectbox("Sort the combined table by:", options=league_df.columns)
