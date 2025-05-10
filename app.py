@@ -81,37 +81,18 @@ if st.button("Show All Leagues"):
         all_dfs.append(df)
     league_df = pd.concat(all_dfs, ignore_index=True)
 
-    # --- INIT ---
-    regions_key_prefix = "region_"
+    # Get sorted unique regions
     unique_regions = sorted(league_df["Region"].dropna().unique())
 
-    # --- SELECT/DESELECT ALL TOGGLE BUTTONS ---
-    col1, col2 = st.columns([1, 1])
-    with col1:
-        if st.button("Select All Regions"):
-            for region in unique_regions:
-                st.session_state[regions_key_prefix + region] = True
-    with col2:
-        if st.button("Deselect All Regions"):
-            for region in unique_regions:
-                st.session_state[regions_key_prefix + region] = False
+    # Add "All" option at the top
+    region_options = ["All"] + unique_regions
 
-    # --- REGION CHECKBOXES ---
-    st.markdown("### Filter by Region(s):")
-    selected_regions = []
-    for region in unique_regions:
-        if region not in st.session_state:
-            st.session_state[regions_key_prefix + region] = True  # Default selected
+    # Single select dropdown
+    selected_region = st.selectbox("Select a Region:", region_options)
 
-        if st.checkbox(region, value=st.session_state[regions_key_prefix + region], key=regions_key_prefix + region):
-            selected_regions.append(region)
-
-    # --- FILTER LOGIC ---
-    if selected_regions:
-        league_df = league_df[league_df["Region"].isin(selected_regions)]
-    else:
-        st.warning("No regions selected. Showing no data.")
-        league_df = league_df.iloc[0:0]
+    # Filter the DataFrame if a specific region is selected
+    if selected_region != "All":
+        league_df = league_df[league_df["Region"] == selected_region]
 
     # Let user pick sort column from combined data
     sort_column = st.selectbox("Sort the combined table by:", options=league_df.columns)
