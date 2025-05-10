@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import streamlit as st
 
 nfl = pd.read_csv("league_rankings/nfl_rankings.csv")
 
@@ -40,4 +41,4 @@ for (row, col), cell in table.get_celld().items():
         cell.set_facecolor(cell_color)
 
 
-plt.show()
+st.pyplot(fig)
